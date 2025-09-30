@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Netflix ChatBot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #141414;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .chat-container {
+      width: 350px;
+      height: 500px;
+      background: #000;
+      border: 2px solid #e50914;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chat-header {
+      background: #e50914;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .chat-box {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+    }
+    .chat-message {
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 5px;
+      max-width: 80%;
+    }
+    .bot {
+      background: #333;
+      align-self: flex-start;
+    }
+    .user {
+      background: #e50914;
+      align-self: flex-end;
+    }
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #444;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+    }
+    .chat-input button {
+      background: #e50914;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">Netflix Bot</div>
+    <div class="chat-box" id="chatBox">
+      <div class="chat-message bot">Hi! I’m your Netflix assistant 🍿. Ask me about shows or movies!</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type your message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      let input = document.getElementById("userInput");
+      let message = input.value.trim();
+      if (message === "") return;
+
+      let chatBox = document.getElementById("chatBox");
+
+      // User message
+      let userMsg = document.createElement("div");
+      userMsg.className = "chat-message user";
+      userMsg.textContent = message;
+      chatBox.appendChild(userMsg);
+
+      // Bot reply
+      let botMsg = document.createElement("div");
+      botMsg.className = "chat-message bot";
+      botMsg.textContent = getBotReply(message);
+      chatBox.appendChild(botMsg);
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+      input.value = "";
+    }
+
+    function getBotReply(msg) {
+      msg = msg.toLowerCase();
+
+      if (msg.includes("hello") || msg.includes("hi")) {
+        return "Hello! Ready for some Netflix recommendations? 🎬";
+      } else if (msg.includes("movie")) {
+        return "You should check out *The Irishman* or *Extraction*!";
+      } else if (msg.includes("series") || msg.includes("show")) {
+        return "I recommend *Stranger Things* or *Money Heist*!";
+      } else if (msg.includes("recommend")) {
+        return "For action, try *Extraction*; for drama, *The Crown*; for thriller, *Dark*.";
+      } else if (msg.includes("bye")) {
+        return "Goodbye! Enjoy your binge 🍿.";
+      } else {
+        return "Sorry, I don’t know that one. Try asking about movies, series, or recommendations.";
+      }
+    }
+  </script>
+</body>
+</html>
+
+✨ Features:
+
+Netflix-style black & red theme
+
+User and bot chat bubbles
+
+Simple keyword-based replies (movies, shows, recommend, etc.)
+
+
+Would you like me to also make this look like IBM Watson’s floating chatbox (bottom-right popup style), or keep it as a full window box?
+
